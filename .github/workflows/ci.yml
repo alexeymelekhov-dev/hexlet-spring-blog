@@ -31,12 +31,11 @@ jobs:
           name: jacoco-report
           path: target/site/jacoco/
 
-      - name: SonarQube Scan
+      - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.projectKey=alexeymelekhov-dev_hexlet-spring-blog \
-            -Dsonar.organization=alexeymelekhov-dev \
-            -Dsonar.host.url=https://sonarcloud.io
+        run: mvn sonar:sonar \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.projectKey=alexeymelekhov-dev_hexlet-spring-blog \
+          -Dsonar.organization=alexeymelekhov-dev \
+          -Dsonar.host.url=https://sonarcloud.io
